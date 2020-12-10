@@ -1,11 +1,12 @@
 
 import { parseReqs } from './parseReqs'
 import { getHtml } from './template'
-
+import { writeTempFile } from './file'
 export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
+        writeTempFile(parsedReqs.title , html)
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html");
         res.end(html);
