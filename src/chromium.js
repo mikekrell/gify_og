@@ -1,4 +1,4 @@
-import launch from 'puppeteer-core';
+import {launch} from 'puppeteer-core';
 const chrome = require('chrome-aws-lambda')
 
 
