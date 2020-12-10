@@ -6,7 +6,7 @@ export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
-        const filePath = writeTempFile(parsedReqs.title , html);
+        const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
         console.log(fileUrl)
         res.statusCode = 200;
