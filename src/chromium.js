@@ -16,7 +16,7 @@ exports.getScreenshot = async (url) => {
         let page = await browser.newPage();
 
         await page.goto(url || 'https://example.com');
-        const screen = await page.screenshot({ type: "png", quality: 70, fullScreen: true });
+        const screen = await page.screenshot({ type: "png", fullScreen: true });
         result = await screen;
     } catch (error) {
         return console.error(error);
