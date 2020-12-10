@@ -1,5 +1,5 @@
 import {IncomingMessage, ServerResponse} from 'http'
-import {parseReqs} from './parser '
+import { parseReqs } from './parseReqs'
 
 export default async function (req, res){
     parseReqs(req);
