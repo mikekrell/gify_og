@@ -13,7 +13,7 @@ async function getOptions () {
     return options
 }
 
-export function getScreenshot (url) {
+export default async function getScreenshot (url) {
     const options = await getOptions();
     const browser = await launch(options);
     const page = await browser.newPage();
