@@ -2,7 +2,7 @@
 import { parseReqs } from './parseReqs'
 import { getHtml } from './template'
 import { writeTempFile } from './file'
-import {getSceenshot} from './chromium';
+import { getSceenshot } from './chromium';
 
 export default async function(req, res){
     try{
