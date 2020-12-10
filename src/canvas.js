@@ -1,12 +1,12 @@
 import { freetypeVersion } from 'canvas';
 import {IncomingMessage, ServerResponse} from 'http'
 import { parseReqs } from './parseReqs'
-import {template} from './template'
+import { template } from './template'
 
-export default async function (req, res){
+export default async function canvas(req, res){
     try{
         const parsedReqs = parseReqs(req);
-        const html = template(parsedReqs)
+        const html = template(parsedReqs);
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html");
         res.end(html);
