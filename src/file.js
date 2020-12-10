@@ -14,4 +14,6 @@ export async function writeTempFile (fileName, html) {
     console.log(filePath)
 
     await promiseWriteFile(filePath, html);
+
+    return filePath
 }
