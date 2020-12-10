@@ -1,6 +1,5 @@
 import {launch} from 'puppeteer-core';
-const chrome = require('chrome-aws-lambda')
-
+import {chrome}  from 'chrome-aws-lambda';
 
 const exePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
