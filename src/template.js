@@ -1,5 +1,5 @@
-export function getHtml(parsedReqs) {
-    const {title} = parseReqs;
+export function template(parsedReqs) {
+    
     return `
         <DOCTYPE html>
         <html>
@@ -112,7 +112,8 @@ export function getHtml(parsedReqs) {
         <body>
         <section class="container">
         <h1>
-            <span class="title">${title}</span>
+            <span class="title">Merry</span>
+            <span class="title">Christmas</span>
         </h1>
         </section>
         </body>
