@@ -1,4 +1,3 @@
-import { freetypeVersion } from 'canvas';
 import chrome from 'chrome-aws-lambda';
 import {launch} from 'puppeteer-core';
 
