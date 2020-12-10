@@ -25,6 +25,8 @@ exports.getScreenshot = async (url) => {
             await browser.close();
         }
     }
-    console.log(result);
-    return result;
+
+
+
+    return await page.screenshot({type:"png", quality: 70, fullScreen: true});
 };
