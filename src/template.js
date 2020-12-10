@@ -1,5 +1,6 @@
 export function getHtml(parsedReqs) {
-    
+    let parsedTitle = parsedReqs.title ? parsedReqs.title : 'Magic'
+
     return `
         <DOCTYPE html>
         <html>
@@ -112,8 +113,7 @@ export function getHtml(parsedReqs) {
         <body>
         <section class="container">
         <h1>
-            <span class="title">Merry</span>
-            <span class="title">Christmas</span>
+            <span class="title">${parsedTitle}</span>
         </h1>
         </section>
         </body>
