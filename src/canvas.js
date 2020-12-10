@@ -4,7 +4,7 @@ import { getHtml } from './template'
 
 export default async function(req, res){
     try{
-        //const parsedReqs = parseReqs(req);
+        const parsedReqs = parseReqs(req);
         const html = `
         <DOCTYPE html>
         <html>
