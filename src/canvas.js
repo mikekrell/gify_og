@@ -1,6 +1,8 @@
 import {IncomingMessage, ServerResponse} from 'http'
+import {parseReqs} from './parser '
 
 export default async function (req, res){
+    parseReqs(req);
     try{
         const html =  `
         <DOCTYPE html>
