@@ -13,7 +13,7 @@ async function getOptions () {
     return options
 }
 
-async function getScreenshot (url) {
+export async function getScreenshot (url) {
     const options = await getOptions();
     const browser = await launch(options);
     const page = await browser.newPage();
@@ -21,5 +21,3 @@ async function getScreenshot (url) {
     await page.goto(url)
     return page.screenshot({type:"png", quality: 100, fullPage: true })
 }
-
-export default getScreenshot;
