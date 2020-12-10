@@ -13,10 +13,11 @@ export default async function(req, res){
         console.log(fileUrl)
 
         const file = await getScreenshot(fileUrl);
-        console.log(file)
+
         res.statusCode = 200;
-        res.setHeader("Content-Type", "text/html");
-        res.end(html);
+        res.setHeader("Content-Type", "image/png");
+        res.setHeader("Cache-Control", "public, immutable, no-transform, s-max-age=21600, max-age=21600")
+        res.end(file);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");
