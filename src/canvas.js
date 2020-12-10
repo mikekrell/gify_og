@@ -1,6 +1,6 @@
 import {IncomingMessage, ServerResponse} from 'http'
 
-export default async function handler(req, res){
+export default async function (req, res){
     try{
         const html =  `
         <DOCTYPE html>

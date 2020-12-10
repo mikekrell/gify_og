@@ -8,6 +8,6 @@
         "config" : {"maxLambdaSize": "36mb"}
     }],
     "routes" : [{
-        "src" : "/og.gif", "dest" : "src/canvas"
+        "src" : "/og.gif", "dest" : "src/canvas.js"
     }]
 }
