@@ -1,4 +1,4 @@
-export function template(parsedReqs) {
+export function getHtml(parsedReqs) {
     
     return `
         <DOCTYPE html>
