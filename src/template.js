@@ -1,4 +1,4 @@
-export function template(parsedReqs) {
+export function getHtml(parsedReqs) {
     const {title} = parseReqs;
     return `
         <DOCTYPE html>
