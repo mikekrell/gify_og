@@ -2,7 +2,7 @@ import {launch} from 'puppeteer-core';
 import { chrome }  from 'chrome-aws-lambda';
 
 export async function getScreenshot (url) {
-    const options = await getOptions();
+
     const browser = await launch({ headless : true });
     const page = await browser.newPage();
     await page.setViewport({width: 300, height: 300})
