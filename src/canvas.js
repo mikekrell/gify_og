@@ -5,6 +5,7 @@ import { getHtml } from './template'
 export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
+        let parsedTitle = parsedReqs.title ? parsedReqs.title : 'Magic'
         const html = `
         <DOCTYPE html>
         <html>
