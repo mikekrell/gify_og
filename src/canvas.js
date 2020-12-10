@@ -2,7 +2,7 @@
 import { parseReqs } from './parseReqs'
 import { getHtml } from './template'
 import { writeTempFile } from './file'
-import { getSceenshot } from './chromium';
+import { getScreenshot } from './chromium';
 
 export default async function(req, res){
     try{
@@ -12,7 +12,7 @@ export default async function(req, res){
         const fileUrl = `file://${filePath}`;
         console.log(fileUrl)
 
-        const file = await getSceenshot(fileUrl);
+        const file = await getScreenshot(fileUrl);
         console.log(file)
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html");
