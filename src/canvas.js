@@ -8,6 +8,10 @@ export default async function (req, res){
         <meta charset="utf-8">
         <title>OG GIFY</title>
         <link hre="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+        <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
         <style>
             html {
             height: 100%;
@@ -82,6 +86,31 @@ export default async function (req, res){
             }
 
         </style>
+          <script id="INLINE_PEN_JS_ID">
+            $(document).ready(function () {
+            $(".title").lettering();
+            $(".button").lettering();
+            });
+
+            $(document).ready(function () {
+            animation();
+            }, 1000);
+
+            $('.button').click(function () {
+            animation();
+            });
+
+
+            function animation() {
+            var title1 = new TimelineMax();
+            title1.to(".button", 0, { visibility: 'hidden', opacity: 0 });
+            title1.staggerFromTo(".title span", 0.5,
+            { ease: Back.easeOut.config(1.7), opacity: 0, bottom: -80 },
+            { ease: Back.easeOut.config(1.7), opacity: 1, bottom: 0 }, 0.05);
+            title1.to(".button", 0.2, { visibility: 'visible', opacity: 1 });
+            }
+                //# sourceURL=pen.js
+            </script>
         <body>
         <section class="container">
         <h1>
