@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "chrome-aws-lambda": "^5.5.0",
+    "get-pixels": "^3.3.2",
+    "gif-encoder-2": "^1.0.5",
     "puppeteer-core": "^5.5.0"
   }
 }

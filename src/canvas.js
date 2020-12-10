@@ -2,6 +2,8 @@
 import { parseReqs } from './parseReqs'
 import { getHtml } from './template'
 import { writeTempFile } from './file'
+import {getSceenshot} from './chromium';
+
 export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
@@ -9,6 +11,9 @@ export default async function(req, res){
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
         console.log(fileUrl)
+
+        const file = await getSceenshot(fileUrl);
+        console.log(file)
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html");
         res.end(html);
