@@ -1,23 +1,30 @@
-const puppeteer = require('puppeteer');
-import { chrome }  from 'chrome-aws-lambda';
+const chromium = require('chrome-aws-lambda');
 
-export async function getScreenshot (url) {
+exports.getScreenshot = async (url) => {
+    let result = null;
+    let browser = null;
 
-    const browser = await puppeteer.launch({ headless : true });
-    const page = await browser.newPage();
-    await page.goto(url)
-    await page.setViewport({ width: 300, height: 300 })
+    try {
+        browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
+        });
 
-    const dimensions = await page.evaluate(() => {
-        return {
-            width: document.documentElement.clientWidth,
-            height: document.documentElement.clientHeight,
-            deviceScaleFactor: window.devicePixelRatio
-        };
-    });
+        let page = await browser.newPage();
 
-    console.log('Dimensions:', dimensions);
+        await page.goto(url || 'https://example.com');
 
-    return await browser.close(); //page.screenshot({type:"png", quality: 100, fullPage: true })
-
-}
+        result = await page.title();
+    } catch (error) {
+        return console.error(error);
+    } finally {
+        if (browser !== null) {
+            await browser.close();
+        }
+    }
+    console.log(result);
+    return result;
+};
