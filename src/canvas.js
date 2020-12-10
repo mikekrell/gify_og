@@ -118,7 +118,7 @@ export default async function(req, res){
         <body>
         <section class="container">
         <h1>
-            <span class="title">${parsedReqs.title}</span>
+            <span class="title">${parsedTitle}</span>
         </h1>
         </section>
         </body>
