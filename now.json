@@ -1,0 +1,13 @@
+{
+    "name" : "gify_og",
+    "version": 2,
+    "public" : false,
+    "builds": [{
+        "src": "src/canvas.js",
+        "use": "@now/node",
+        "config" : {"maxLambdaSize": "36mb"}
+    }],
+    "routes" : [{
+        "src" : "/og.gif", "dest" : "src/canvas"
+    }]
+}
