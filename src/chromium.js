@@ -1,12 +1,19 @@
 import { writeTempFile } from './file'
 
 const chromium = require('chrome-aws-lambda');
+const GIFEncoder = require('gif-encoder-2')
+const { writeFile } = require('fs')
+const path = require('path')
 
 module.exports.getScreenshot = async function (html, title) {
     let browser = null;
 
+
     try {
         let fileList = []
+        const encoder = new GIFEncoder(300, 300);
+        encoder.setDelay(50)
+        encoder.start()
 
         browser = await chromium.puppeteer.launch({
             args: chromium.args,
@@ -24,15 +31,15 @@ module.exports.getScreenshot = async function (html, title) {
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
             let screen = await page.screenshot({ type: "png", fullScreen: true });
-            fileList.push(screen)
+            encoder.addFrame(screen)
             setTimeout(function(){
                 console.log('screen ' + a)
-            },200)
+            }, 50)
         }
 
-
-        console.log(fileList)
-        return fileList[fileList.length-1];
+        encoder.finish();
+        const buffer = encoder.out.getData()
+        return buffer;
 
     } catch (error) {
         return console.error(error);
