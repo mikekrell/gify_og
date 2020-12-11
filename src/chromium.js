@@ -1,6 +1,6 @@
 const chromium = require('chrome-aws-lambda');
 
-exports.getScreenshot = async (url) => {
+export async function getScreenshot (url) {
     let result = null;
     let browser = null;
 
@@ -17,8 +17,7 @@ exports.getScreenshot = async (url) => {
         await page.setViewport({width:300, height: 300});
         await page.goto(url);
         const screen = await page.screenshot({ type: "png", fullScreen: true });
-        result = await screen;
-        return result;
+        return await screen;
 
     } catch (error) {
         return console.error(error);
@@ -27,6 +26,4 @@ exports.getScreenshot = async (url) => {
             await browser.close();
         }
     }
-
-
 };
