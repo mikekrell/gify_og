@@ -1,4 +1,3 @@
-import { freetypeVersion } from 'canvas';
 
 const chromium = require('chrome-aws-lambda');
 const { record } = require('puppeteer-recorder')
