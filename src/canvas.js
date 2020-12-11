@@ -10,13 +10,13 @@ export default async function(req, res){
         const html = getHtml(parsedReqs);
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
+        console.log(fileUrl)
 
         const file = await getScreenshot(fileUrl);
 
         res.statusCode = 200;
-        res.setHeader("Content-Type", "image/png");
-        res.setHeader("Cache-Control", "public, immutable, no-transform")
-        res.end(file);
+        res.setHeader("Content-Type", "image/jpeg");
+        res.send(file);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");
