@@ -1,8 +1,10 @@
 import { writeTempFile } from './file'
+import { join } from 'path';
+import { tmpdir } from 'os'
 
 const chromium = require('chrome-aws-lambda');
 const GIFEncoder = require('gif-encoder-2')
-const { writeFile } = require('fs')
+const { writeFile, createWriteStream } = require('fs')
 const path = require('path')
 
 module.exports.getScreenshot = async function (html, title) {
@@ -11,8 +13,14 @@ module.exports.getScreenshot = async function (html, title) {
 
     try {
         let fileList = []
-        const encoder = new GIFEncoder(300, 300);
+        const encoder = new GIFEncoder(300, 300, "", true);
+        const newFile = join(tmpdir(), 'og.gif');
+        const writeStream = createWriteStream(newFile)
+
         encoder.setDelay(50)
+
+        encoder.createReadStream().pipe(writeStream)
+        
         encoder.start()
 
         browser = await chromium.puppeteer.launch({
@@ -26,7 +34,7 @@ module.exports.getScreenshot = async function (html, title) {
         let page = await browser.newPage();
 
         await page.setViewport({width:300, height: 300});
-        let filePath = await writeTempFile(title, html);
+        let filePath = await writeTempFile(title, html, '.html');
         let fileUrl = `file://${filePath}`;
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
@@ -38,6 +46,7 @@ module.exports.getScreenshot = async function (html, title) {
         }
         console.log(encoder)
         encoder.finish();
+
         const buffer = encoder.out.getData()
         return buffer;
 
