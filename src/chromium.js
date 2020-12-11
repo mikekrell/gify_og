@@ -30,13 +30,13 @@ module.exports.getScreenshot = async function (html, title) {
             let iamgeUrl = `file://${imagePath}`;
             fileList.push(iamgeUrl)
             setTimeout(function(){
-                console.log(fileList[a])
+                
             }, 50)
         }
 
         Promise.all(fileList).then(data=>{
             createGIF({
-                'images': fileList,
+                'images': data,
             }, function (obj) {
                 if (!obj.error) {
                     console.log(obj) 
