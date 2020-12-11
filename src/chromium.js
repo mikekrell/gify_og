@@ -1,10 +1,8 @@
 import { writeTempFile } from './file'
-
-
 const chromium = require('chrome-aws-lambda');
-const gifshot = require('gifshot'); 
 
 module.exports.getScreenshot = async function (html, title) {
+    const gifshot = require('gifshot'); 
     let browser = null;
 
     try {
@@ -46,7 +44,7 @@ module.exports.getScreenshot = async function (html, title) {
             });
         })
 
-        return fileList[fileList.length-1];
+        return returnData;
 
     } catch (error) {
         return console.error(error);
