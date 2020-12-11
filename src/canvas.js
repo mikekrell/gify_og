@@ -8,15 +8,25 @@ export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
+        const bufferArray = []
+        let numOfImages = 20;
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
-        console.log(fileUrl)
+        const iter = setInterval(buildFile, 50);
 
-        const file = await getScreenshot(fileUrl);
+        const buildFile = () => {
+            if (numOfImages !== 0) {
+                const file = await getScreenshot(fileUrl);
+                console.log(file, numOfImages--)
+                numOfImages--
+            }
+            
+            clearInterval(iter)
+        }
 
         res.statusCode = 200;
-        res.setHeader("Content-Type", "image/png");
-        res.end(file);
+        res.setHeader("Content-Type", "text/html");
+        res.end(html);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");
