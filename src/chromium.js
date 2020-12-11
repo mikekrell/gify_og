@@ -1,6 +1,8 @@
 import { writeTempFile } from './file'
+import { createGIF } from 'gifshot'
 
 const chromium = require('chrome-aws-lambda');
+
 
 module.exports.getScreenshot = async function (html, title) {
     let browser = null;
@@ -26,14 +28,20 @@ module.exports.getScreenshot = async function (html, title) {
             let screen = await page.screenshot({ type: "png", fullScreen: true });
             let imagePath = writeTempFile(title + a, screen, '.png');
             let iamgeUrl = `file://${imagePath}`;
-            fileList.push(imagePath)
+            fileList.push(iamgeUrl)
             setTimeout(function(){
-                console.log('screen ' + a)
+                console.log(fileList[a])
             }, 50)
         }
 
         Promise.all(fileList).then(data=>{
-            console.log(data);
+            createGIF({
+                'images': fileList
+            }, function (obj) {
+                if (!obj.error) {
+                    console.log(obj)
+                }
+            });
         })
 
         return fileList[fileList.length-1];
