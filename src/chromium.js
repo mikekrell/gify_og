@@ -1,4 +1,4 @@
-import { writeTempFile, writeImageFile } from './file'
+import { writeTempFile } from './file'
 
 const chromium = require('chrome-aws-lambda');
 
@@ -19,7 +19,7 @@ module.exports.getScreenshot = async function (html, title) {
         let page = await browser.newPage();
 
         await page.setViewport({width:300, height: 300});
-        let filePath = await writeTempFile(title, html);
+        let filePath = await writeTempFile(title, html, '.html');
         let fileUrl = `file://${filePath}`;
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
