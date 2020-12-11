@@ -1,4 +1,4 @@
-import { writeTempFile } from './file'
+import { writeTempFile, writeImageFile } from './file'
 
 const chromium = require('chrome-aws-lambda');
 
