@@ -9,14 +9,14 @@ export default async function(req, res){
         const html = getHtml(parsedReqs);
         let buffers = []
         for (var a = 0; a < 20; a ++) {
-            const filePath = await writeTempFile(parsedReqs.title, html);
-            const fileUrl = `file://${filePath}`;
+            setTimeout(() => {
+                const filePath = await writeTempFile(parsedReqs.title, html);
+                const fileUrl = `file://${filePath}`;
 
-            let file = await getScreenshot(fileUrl);
-            buffers.push(file)
-            setTimeout(()=>{
-
+                let file = await getScreenshot(fileUrl);
+                buffers.push(file)
             }, 300)
+
         }
 
         console.log(buffers.length)
