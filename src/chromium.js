@@ -30,13 +30,13 @@ module.exports.getScreenshot = async function (html, title) {
         let fileUrl = `file://${filePath}`;
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
-            let screen = await page.screenshot({ type: "png", fullScreen: true });
-            encoder.addFrame(screen)
+            let screen = await page.screenshot({ type: "jpeg" });
             setTimeout(function(){
-                console.log('screen ' + a)
+                encoder.addFrame(screen)
+                console.log('screen added')
             }, 50)
         }
-
+        console.log(encoder)
         encoder.finish();
         const buffer = encoder.out.getData()
         return buffer;
