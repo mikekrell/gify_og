@@ -90,7 +90,7 @@ export function getHtml(parsedReqs) {
             });
 
             $(document).ready(function () {
-                setTimeout(()=>animation(), 500);
+                setTimeout(()=>animation(), 1000);
             }, 1000);
 
 
@@ -102,7 +102,6 @@ export function getHtml(parsedReqs) {
             { ease: Back.easeOut.config(1.7), opacity: 1, bottom: 0 }, 0.05);
             title1.to(".button", 0.2, { visibility: 'visible', opacity: 1 });
             }
-                //# sourceURL=pen.js
             </script>
         <body>
         <section class="container">
