@@ -7,7 +7,9 @@ import {promisify} from 'util';
 const promiseWriteFile = promisify(writeFile)
 
 export async function writeTempFile (fileName, html) {
-    const hashedFileName = createHash("md5").update(fileName).digest('hex') + ".html";
+    const moonLanding = new Date()
+
+    const hashedFileName = createHash("md5").update(fileName + moonLanding.getMilliseconds()).digest('hex') + ".html";
 
     const filePath = join(tmpdir(), hashedFileName);
 
