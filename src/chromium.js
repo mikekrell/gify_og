@@ -24,7 +24,7 @@ module.exports.getScreenshot = async function (html, title) {
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
             let screen = await page.screenshot({ type: "png", fullScreen: true });
-            let imagePath = writeImageFile(title + a, screen, '.png');
+            let imagePath = writeTempFile(title + a, screen, '.png');
             let iamgeUrl = `file://${imagePath}`;
             fileList.push(imagePath)
             setTimeout(function(){
@@ -35,7 +35,7 @@ module.exports.getScreenshot = async function (html, title) {
         Promise.all(fileList).then(data=>{
             console.log(data);
         })
-        
+
         return fileList[fileList.length-1];
 
     } catch (error) {
