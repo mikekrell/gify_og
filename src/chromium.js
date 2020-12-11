@@ -1,5 +1,7 @@
 import { writeTempFile, writeImageFile } from './file'
 
+const gifshot = require('gifshot')
+
 const chromium = require('chrome-aws-lambda');
 
 module.exports.getScreenshot = async function (html, title) {
@@ -32,7 +34,15 @@ module.exports.getScreenshot = async function (html, title) {
             }, 50)
         }
 
-        console.log(fileList)
+        gifshot.createGIF({
+            'images': fileList
+        }, function (obj) {
+            if (!obj.error) {
+                var image = obj.image,
+            }
+        });
+
+        console.log(gifshot)
         return fileList[fileList.length-1];
 
     } catch (error) {
