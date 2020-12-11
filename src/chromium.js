@@ -20,13 +20,15 @@ module.exports.getScreenshot = async function (html, title) {
 
         await page.setViewport({width:300, height: 300});
         for (let a = 0; a < 20; a++) {
-            let filePath = await writeTempFile(title, html);
-            let fileUrl = `file://${filePath}`;
-            await page.goto(fileUrl);
-            let screen = await page.screenshot({ type: "png", fullScreen: true });
-            fileList.push(screen)
+            setTimeout(()=>{
+                let filePath = await writeTempFile(title, html);
+                let fileUrl = `file://${filePath}`;
+                await page.goto(fileUrl);
+                let screen = await page.screenshot({ type: "png", fullScreen: true });
+                fileList.push(screen)
+            }, 300)
         }
-
+        console.log(fileList)
         return fileList[0];
 
     } catch (error) {
