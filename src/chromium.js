@@ -13,9 +13,10 @@ module.exports.getScreenshot = async function (url) {
         });
 
         let page = await browser.newPage();
-        
+
         await page.setViewport({width:300, height: 300});
         await page.goto(url);
+
         const screen = await page.screenshot({ type: "png", fullScreen: true });
 
         return screen;
