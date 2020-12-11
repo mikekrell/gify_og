@@ -18,7 +18,7 @@ module.exports.writeTempFile =  async (fileName, html) => {
     return filePath
 }
 
-module.exports.writeTempFile = async (fileName, data, ext) => {
+module.exports.writeImageFile = async (fileName, data, ext) => {
     const moonLanding = new Date()
 
     const hashedFileName = createHash("md5").update(fileName + moonLanding.getMilliseconds()).digest('hex') + `.${ext}`;
