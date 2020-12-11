@@ -23,7 +23,7 @@ export function getHtml(parsedReqs) {
             .container {
             display: block;
             position: absolute;
-            padding: 50px;
+            padding: 10px;
             width: 300px;
             height: 300px;
             }
