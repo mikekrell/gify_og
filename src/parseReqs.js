@@ -1,4 +1,4 @@
-import {parse} from 'url'
+import { parse } from 'url'
 
 export function parseReqs(req) {
     const {query = { } } = parse(req.url || "", true);

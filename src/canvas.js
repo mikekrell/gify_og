@@ -1,4 +1,3 @@
-
 import { parseReqs } from './parseReqs'
 import { getHtml } from './template'
 import { writeTempFile } from './file'
@@ -8,11 +7,11 @@ export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
-        const bufferArray = []
+        const bufferArray = [];
         let numOfImages = 20;
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
-        const iter = setInterval(buildFile, 50);
+        const iter = setInterval(buildFile, 500);
 
         const buildFile = () => {
             if (numOfImages !== 0) {
