@@ -32,15 +32,10 @@ module.exports.getScreenshot = async function (html, title) {
             }, 50)
         }
 
-        gifshot.createGIF({
-            'images': fileList
-        }, function (obj) {
-            if (!obj.error) {
-                var image = obj.image,
-            }
-        });
-
-        console.log(gifshot)
+        Promise.all(fileList).then(data=>{
+            console.log(data);
+        })
+        
         return fileList[fileList.length-1];
 
     } catch (error) {
