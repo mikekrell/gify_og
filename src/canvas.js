@@ -10,16 +10,9 @@ export default async function(req, res){
 
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
-        const bufferArray = []
-        let file = await getScreenshot(fileUrl);
-        bufferArray.push(file)
-        for(var a =0 ; a<20; a++) {
-            setTimeout(function () {
-                bufferArray.push(await getScreenshot(fileUrl));
-            }, 500);
-        }
 
-        console.log(bufferArray)
+        let file = await getScreenshot(fileUrl);
+
         res.statusCode = 200;
         res.setHeader("Content-Type", "image/png");
         res.end(file);
