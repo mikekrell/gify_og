@@ -86,17 +86,12 @@ export function getHtml(parsedReqs) {
         </style>
           <script id="INLINE_PEN_JS_ID">
             $(document).ready(function () {
-            $(".title").lettering();
-            $(".button").lettering();
+                $(".title").lettering();
             });
 
             $(document).ready(function () {
-            animation();
+                setTimeout(()=>animation(), 500);
             }, 1000);
-
-            $('.button').click(function () {
-            animation();
-            });
 
 
             function animation() {
