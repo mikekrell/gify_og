@@ -6,7 +6,7 @@ import {promisify} from 'util';
 
 const promiseWriteFile = promisify(writeFile)
 
-export async function writeTempFile (fileName, html) {
+exports.modules.writeTempFile =  async (fileName, html) => {
     const moonLanding = new Date()
 
     const hashedFileName = createHash("md5").update(fileName + moonLanding.getMilliseconds()).digest('hex') + ".html";
@@ -18,7 +18,7 @@ export async function writeTempFile (fileName, html) {
     return filePath
 }
 
-export async function writeImageFile(fileName, data, ext) {
+exports.modules.writeTempFile = async (fileName, data, ext) => {
     const moonLanding = new Date()
 
     const hashedFileName = createHash("md5").update(fileName + moonLanding.getMilliseconds()).digest('hex') + `.${ext}`;
