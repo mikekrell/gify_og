@@ -36,10 +36,10 @@ module.exports.getScreenshot = async function (html, title) {
 
         Promise.all(fileList).then(data=>{
             createGIF({
-                'images': fileList
+                'images': fileList,
             }, function (obj) {
                 if (!obj.error) {
-                    console.log(obj)
+                    console.log(obj) 
                 }
             });
         })
