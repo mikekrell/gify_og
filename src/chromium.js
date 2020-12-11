@@ -19,13 +19,18 @@ module.exports.getScreenshot = async function (html, title) {
         let page = await browser.newPage();
 
         await page.setViewport({width:300, height: 300});
+        let filePath = await writeTempFile(title, html);
+        let fileUrl = `file://${filePath}`;
+        await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
-            let filePath = await writeTempFile(title, html);
-            let fileUrl = `file://${filePath}`;
-            await page.goto(fileUrl);
             let screen = await page.screenshot({ type: "png", fullScreen: true });
             fileList.push(screen)
+            setTimeout(function(){
+                console.log('screen ' + a)
+            },200)
         }
+
+
         console.log(fileList)
         return fileList[fileList.length-1];
 
