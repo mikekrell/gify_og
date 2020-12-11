@@ -15,8 +15,8 @@ export default async function(req, res){
         const file = await getScreenshot(fileUrl);
 
         res.statusCode = 200;
-        res.setHeader("Content-Type", "image/jpeg");
-        res.send(file);
+        res.setHeader("Content-Type", "text/html");
+        res.end(html);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");
