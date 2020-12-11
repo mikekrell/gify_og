@@ -34,12 +34,13 @@ module.exports.getScreenshot = async function (html, title) {
             }, 50)
         }
 
-        Promise.all(fileList).then(data=>{
+        let returnData = Promise.all(fileList).then(data=>{
             createGIF({
                 'images': data,
             }, function (obj) {
                 if (!obj.error) {
-                    console.log(obj) 
+                    let image = obj.image;
+                    console.log(image)
                 }
             });
         })
