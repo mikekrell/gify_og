@@ -19,7 +19,8 @@ module.exports.getScreenshot = async function (url) {
         const screen = await page.screenshot({ type: "png", fullScreen: true });
         buffers.push(screen)
         setTimeout(()=>{
-            buffers.push(await page.screenshot({ type: "png", fullScreen: true }))
+            let newFile = await page.screenshot({ type: "png", fullScreen: true })
+            buffers.push(newFile )
         }, 300)
         console.log(buffers)
         return await screen;
