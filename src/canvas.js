@@ -7,22 +7,12 @@ export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
-        let buffers = []
-        for (var a = 0; a < 20; a ++) {
-            setTimeout(() => {
-                const filePath = await writeTempFile(parsedReqs.title, html);
-                const fileUrl = `file://${filePath}`;
-
-                let file = await getScreenshot(fileUrl);
-                buffers.push(file)
-            }, 300)
-
-        }
-
-        console.log(buffers.length)
+        const filePath = await writeTempFile(parsedReqs.title, html);
+        const fileUrl = `file://${filePath}`;
+        let file = await getScreenshot(fileUrl);
         res.statusCode = 200;
         res.setHeader("Content-Type", "image/png");
-        res.end(buffers[0]);
+        res.end(file);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");

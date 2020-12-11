@@ -14,9 +14,15 @@ export async function getScreenshot (url) {
         });
 
         let page = await browser.newPage();
+        let buffers = []
         await page.setViewport({width:300, height: 300});
         await page.goto(url);
         const screen = await page.screenshot({ type: "png", fullScreen: true });
+        buffers.push(screen)
+        setTimeout(()=>{
+            buffers.push(await page.screenshot({ type: "png", fullScreen: true }))
+        }, 300)
+        console.log(buffers)
         return await screen;
 
     } catch (error) {
