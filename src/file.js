@@ -25,7 +25,7 @@ export async function writeImageFile(fileName, data, ext) {
 
     const filePath = join(tmpdir(), hashedFileName);
 
-    await promiseWriteFile(filePath, html);
+    await promiseWriteFile(filePath, data);
 
     return filePath
 }
