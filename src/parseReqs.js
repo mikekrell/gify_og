@@ -1,6 +1,6 @@
 import { parse } from 'url'
 
-export function parseReqs(req) {
+export default function (req) {
     const {query = { } } = parse(req.url || "", true);
     const {title} = query;
     const parseReqs = {title}

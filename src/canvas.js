@@ -1,4 +1,4 @@
-import { parseReqs } from './parseReqs'
+import parseReqs  from './parseReqs'
 import { getHtml } from './template'
 import { writeTempFile } from './file'
 import { getScreenshot } from './chromium';

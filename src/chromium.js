@@ -1,7 +1,6 @@
 const chromium = require('chrome-aws-lambda');
 
 export async function getScreenshot (url) {
-    let result = null;
     let browser = null;
 
     try {
