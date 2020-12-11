@@ -11,21 +11,11 @@ export default async function(req, res){
         let numOfImages = 20;
         const filePath = await writeTempFile(parsedReqs.title , html);
         const fileUrl = `file://${filePath}`;
-        const iter = setInterval(buildFile, 500);
-
-        const buildFile = () => {
-            if (numOfImages !== 0) {
-                const file = await getScreenshot(fileUrl);
-                console.log(file, numOfImages--)
-                numOfImages--
-            }
-            
-            clearInterval(iter)
-        }
+        const file = await getScreenshot(fileUrl); 
 
         res.statusCode = 200;
-        res.setHeader("Content-Type", "text/html");
-        res.end(html);
+        res.setHeader("Content-Type", "image/png");
+        res.end(file);
     }catch(e){
         res.statusCode = 500;
         res.setHeader("Content-Type", "text/html");
