@@ -13,14 +13,14 @@ module.exports.getScreenshot = async function (html, title) {
 
     try {
         let fileList = []
-        const encoder = new GIFEncoder(300, 300, "", true);
+        const encoder = new GIFEncoder(300, 300, html, true);
         const newFile = join(tmpdir(), 'og.gif');
         const writeStream = createWriteStream(newFile)
 
         encoder.setDelay(50)
 
         encoder.createReadStream().pipe(writeStream)
-        
+
         encoder.start()
 
         browser = await chromium.puppeteer.launch({
