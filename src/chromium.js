@@ -1,27 +1,12 @@
 import { writeTempFile } from './file'
-import { join } from 'path';
-import { tmpdir } from 'os'
 
 const chromium = require('chrome-aws-lambda');
-const GIFEncoder = require('gif-encoder-2')
-const { writeFile, createWriteStream } = require('fs')
-const path = require('path')
 
 module.exports.getScreenshot = async function (html, title) {
     let browser = null;
 
-
     try {
         let fileList = []
-        const encoder = new GIFEncoder(300, 300, html, true);
-        const newFile = join(tmpdir(), 'og.gif');
-        const writeStream = createWriteStream(newFile)
-
-        encoder.setDelay(50)
-
-        encoder.createReadStream().pipe(writeStream)
-
-        encoder.start()
 
         browser = await chromium.puppeteer.launch({
             args: chromium.args,
@@ -34,21 +19,21 @@ module.exports.getScreenshot = async function (html, title) {
         let page = await browser.newPage();
 
         await page.setViewport({width:300, height: 300});
-        let filePath = await writeTempFile(title, html, '.html');
+        let filePath = await writeTempFile(title, html);
         let fileUrl = `file://${filePath}`;
         await page.goto(fileUrl);
         for (let a = 0; a < 20; a++) {
-            let screen = await page.screenshot({ type: "jpeg" });
+            let screen = await page.screenshot({ type: "png", fullScreen: true });
+            let imagePath = writeImageFile(title + a, screen, '.png');
+            let iamgeUrl = `file://${imagePath}`;
+            fileList.push(imagePath)
             setTimeout(function(){
-                encoder.addFrame(screen)
-                console.log('screen added')
+                console.log('screen ' + a)
             }, 50)
         }
-        console.log(encoder)
-        encoder.finish();
 
-        const buffer = encoder.out.getData()
-        return buffer;
+        console.log(fileList)
+        return fileList[fileList.length-1];
 
     } catch (error) {
         return console.error(error);
