@@ -19,7 +19,7 @@ module.exports.getScreenshot = async function (title, html) {
         let page = await browser.newPage();
 
         await page.setViewport({width:300, height: 300});
-        for (a = 0; a < 20; a++) {
+        for (let a = 0; a < 20; a++) {
             let filePath = await writeTempFile(parsedReqs.title, html);
             let fileUrl = `file://${filePath}`;
             await page.goto(url);
