@@ -90,8 +90,8 @@ export function getHtml(parsedReqs) {
             });
 
             $(document).ready(function () {
-                animation();
-            }, 500);
+                animation(); 
+            });
 
 
             function animation() {
