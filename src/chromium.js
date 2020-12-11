@@ -2,7 +2,7 @@ import { writeTempFile } from './file'
 
 
 const chromium = require('chrome-aws-lambda');
-const gifshot = require('gifshot');
+const gifshot = require('gifshot'); 
 
 module.exports.getScreenshot = async function (html, title) {
     let browser = null;
