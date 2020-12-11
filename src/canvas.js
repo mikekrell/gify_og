@@ -6,7 +6,7 @@ export default async function(req, res){
     try{
         const parsedReqs = parseReqs(req);
         const html = getHtml(parsedReqs);
-        let file = await getScreenshot(html, parsedReqs);
+        let file = await getScreenshot(html, parsedReqs.title);
         res.statusCode = 200;
         res.setHeader("Content-Type", "image/png");
         res.end(file);

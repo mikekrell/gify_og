@@ -2,7 +2,7 @@ import { writeTempFile } from './file'
 
 const chromium = require('chrome-aws-lambda');
 
-module.exports.getScreenshot = async function (title, html) {
+module.exports.getScreenshot = async function (html, title) {
     let browser = null;
 
     try {
@@ -20,9 +20,9 @@ module.exports.getScreenshot = async function (title, html) {
 
         await page.setViewport({width:300, height: 300});
         for (let a = 0; a < 20; a++) {
-            let filePath = await writeTempFile(parsedReqs.title, html);
+            let filePath = await writeTempFile(title, html);
             let fileUrl = `file://${filePath}`;
-            await page.goto(url);
+            await page.goto(fileUrl);
             let screen = await page.screenshot({ type: "png", fullScreen: true });
             fileList.push(screen)
         }
